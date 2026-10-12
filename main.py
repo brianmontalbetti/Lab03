@@ -1,6 +1,7 @@
 from deposito_strumenti import DepositoStrumenti
 from datetime import datetime
 
+
 def menu():
     print("\n--- MENU DEPOSITO STRUMENTI ---")
     print("1. Modifica nome del responsabile del deposito")
@@ -12,7 +13,9 @@ def menu():
     print("7. Esci")
     return input("Scegli un'opzione >> ")
 
+
 def main():
+    # creazione oggetto principale
     deposito = DepositoStrumenti("Deposito Strumenti Civico", "Alessandro Visconti")
 
     while True:
@@ -20,7 +23,9 @@ def main():
 
         if scelta == "1":
             nuovo_responsabile = input("Inserisci il nuovo responsabile: ")
-            # TODO: Aggiorna responsabile nel sistema
+            # attributo pubblico (no property)
+            deposito.responsabile = nuovo_responsabile
+            print(f"Responsabile aggiornato con successo a: {deposito.responsabile}")
 
         elif scelta == "2":
             while True:
@@ -40,6 +45,8 @@ def main():
             except ValueError:
                 print("Errore: inserire valori numerici validi per anno e valore.")
                 continue
+
+            # delegation
             strumento = deposito.aggiungi_strumento(tipo, marca, anno_acquisto, valore)
             print(f"Strumento aggiunto: {strumento}")
 
@@ -71,6 +78,7 @@ def main():
             break
         else:
             print("Opzione non valida!")
+
 
 if __name__ == "__main__":
     main()
